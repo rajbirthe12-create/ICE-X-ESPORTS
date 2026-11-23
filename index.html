@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#090d18"><title>ICE X ESPORTS</title><link rel="stylesheet" href="style.css"></head>
+<body><header><div class="brand">ICE <span>X ESPORTS</span></div><div class="tag">BATTLE • WIN • REPEAT</div></header>
+<main>
+<section class="hero"><div class="eyebrow">WELCOME PLAYER</div><h1>PLAY. COMPETE.<br><em>GET REWARDED.</em></h1><p>আপনার পরবর্তী ম্যাচে জয় নিশ্চিত করুন!</p><button class="primary" onclick="show('tournaments')">টুর্নামেন্ট দেখুন</button></section>
+<nav><button class="nav active" onclick="show('tournaments',this)">টুর্নামেন্ট</button><button class="nav" onclick="show('joined',this)">আমার ম্যাচ</button><button class="nav" onclick="show('admin',this)">অ্যাডমিন</button></nav>
+<section id="tournaments" class="panel"><div class="section-title"><h2>চলমান টুর্নামেন্ট</h2><small>LIVE EVENTS</small></div><div id="cards"></div></section>
+<section id="joined" class="panel hidden"><div class="section-title"><h2>আমার ম্যাচ</h2></div><div id="myMatches" class="empty">এখনো কোনো ম্যাচে জয়েন করেননি।</div></section>
+<section id="admin" class="panel hidden"><div class="section-title"><h2>অ্যাডমিন প্যানেল</h2></div><div id="adminLogin"><p class="muted">অ্যাডমিন PIN দিয়ে প্রবেশ করুন। ডিফল্ট PIN: <b>1234</b></p><input id="pin" type="password" placeholder="Admin PIN"><button class="primary" onclick="login()">লগইন</button></div>
+<div id="adminArea" class="hidden"><h3>নতুন টুর্নামেন্ট</h3><input id="name" placeholder="Tournament name"><div class="two"><input id="mode" placeholder="Mode (Solo/Duo/Squad)"><input id="fee" type="number" placeholder="Entry fee (৳)"></div><div class="two"><input id="prize" type="number" placeholder="Prize pool (৳)"><input id="slots" type="number" placeholder="Total slots"></div><button class="primary" onclick="addTournament()">টুর্নামেন্ট যোগ করুন</button><h3>পেমেন্ট রিকোয়েস্ট</h3><div id="requests" class="empty">কোনো রিকোয়েস্ট নেই।</div><button class="outline" onclick="logout()">লগআউট</button></div></section>
+</main><footer>FF TOURNAMENT <span>BATTLE • COMPETE • CONQUER</span></footer>
+<div id="modal" class="modal hidden"><div class="dialog"><button class="close" onclick="closeModal()">×</button><h2>টুর্নামেন্টে জয়েন</h2><p class="muted" id="joinTitle"></p><input id="player" placeholder="আপনার ইন-গেম নাম"><input id="uid" placeholder="Free Fire UID"><select id="method"><option value="bKash">bKash</option><option value="Nagad">Nagad</option></select><input id="trx" placeholder="Transaction ID"><p class="hint">Entry fee পাঠানোর পর Transaction ID দিন। পেমেন্ট ম্যানুয়ালি যাচাই হবে।</p><button class="primary" onclick="submitJoin()">রিকোয়েস্ট পাঠান</button></div></div>
+<script src="app.js"></script></body></html>
