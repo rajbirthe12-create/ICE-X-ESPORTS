@@ -1,0 +1,45 @@
+
+name: Build ICE X ESPORTS APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Download app source
+        run: |
+          wget -O source.zip https://github.com/rajbirthe12-create/ICE X ESPORTS/archive/refs/heads/main.zip
+          unzip -q source.zip -d upstream
+          find upstream -name 'FF_Tournament_Android_Project.zip' -exec unzip -q {} -d app \;
+
+      - name: Build APK
+        run: |
+          cd app
+          flutter create . --platforms=android
+          flutter pub get
+          flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ICE X ESPORTS-APK
+          path: app/build/app/outputs/flutter-apk/app-release.apk
